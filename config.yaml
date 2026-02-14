@@ -1,0 +1,25 @@
+agents:
+  claude:
+    command: "claude"
+    description: "Deep reasoning, multi-file architectural planning."
+    enabled: true
+  codex:
+    command: "codex"
+    description: "Autonomous terminal operator and DevOps execution."
+    enabled: true
+  gemini:
+    command: "gemini"
+    description: "Massive context (1M+) research and rapid prototyping."
+    enabled: true
+  cursor:
+    command: "cursor"
+    description: "The central IDE, diff viewer, and fine-grained editor."
+    enabled: true
+  antigravity:
+    command: "antigravity"
+    description: "High-velocity, 'YOLO' agentic prototype mode."
+    enabled: true
+
+settings:
+  default_agent: "claude"
+  dry_run: false
