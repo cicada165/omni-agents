@@ -1,8 +1,7 @@
+import subprocess
 from .base import AgentWrapper
 
 class CodexWrapper(AgentWrapper):
-    def execute(self, task):
-        print(f"[{self.name}] engaging for DevOps/Terminal execution...")
-        # Hypothetical usage: codex -c "task"
-        command = [self.command, "-c", task]
-        print(f"[{self.name}] (Simulated) Running: {' '.join(command)}")
+    def delegate(self, task):
+        print(f"🤖 [AGENT] Delegating to Codex for DevOps/Terminal execution...")
+        return self._run_subprocess([self.command, task])

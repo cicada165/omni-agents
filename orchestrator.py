@@ -10,7 +10,8 @@ from wrappers.cursor_wrapper import CursorWrapper
 from wrappers.antigravity_wrapper import AntigravityWrapper
 
 AGENT_CLASSES = {
-    "claude": ClaudeWrapper,
+    "claude-pro": ClaudeWrapper,
+    "claude-bedrock": ClaudeWrapper,
     "codex": CodexWrapper,
     "gemini": GeminiWrapper,
     "cursor": CursorWrapper,
@@ -45,20 +46,17 @@ def main():
         print(f"Error: Agent '{agent_name}' is disabled.")
         sys.exit(1)
 
-    print(f"🚀 Starting Orchestrator with agent: {agent_name}")
+    # Merge global dry_run setting with CLI flag
+    is_dry_run = args.dry_run or config.get("settings", {}).get("dry_run", False)
+    agent_config["dry_run"] = is_dry_run
+
+    category = agent_config.get("category", "utility").upper()
+    print(f"\n--- [OMNI-AGENTS] Initializing {category}: {agent_name} ---")
     print(f"📋 Task: {args.task}")
 
     wrapper_class = AGENT_CLASSES.get(agent_name, AgentWrapper)
     wrapper = wrapper_class(agent_name, agent_config)
-    
-    if args.dry_run or config["settings"].get("dry_run", False):
-        print(f"[DRY RUN] Mode enabled")
-        # In dry run, we might just print what execute would do, but the wrappers currently check dry_run inside execute too.
-        # We can pass a flag to execute or let the wrapper handle it from config.
-        # For now, let's just call execute, as the wrappers simulate execution.
-        wrapper.execute(args.task)
-    else:
-        wrapper.execute(args.task)
+    wrapper.execute(args.task)
 
 if __name__ == "__main__":
     main()

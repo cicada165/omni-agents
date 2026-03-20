@@ -32,9 +32,20 @@ The Agent Orchestrator allows you to:
 
 3. **Configuration**:
    Copy `config.yaml` and update paths/arguments if your tools are in non-standard locations.
-   
+
+## Architecture: Agents vs Utilities
+
+Omni-Agents distinguishes between two types of tools:
+
+1.  **AGENT**: Autonomous workers with their own execution loops and toolsets (e.g., Claude Code, Codex). When you use an agent, Omni-Agents **delegates** the task and lets the agent take over the TUI.
+2.  **UTILITY**: Stateless API wrappers or CLI tools (e.g., Cursor, GitHub CLI). When you use a utility, Omni-Agents **calls** the tool to perform a specific action.
+
 ## Usage
 
 ```bash
-python orchestrator.py --task "Your complex task here" --agent claude
+# Delegate to an Agent
+python orchestrator.py --task "Architect a new microservice" --agent claude-pro
+
+# Call a Utility
+python orchestrator.py --task "index.py" --agent cursor
 ```

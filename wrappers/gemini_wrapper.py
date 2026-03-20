@@ -1,8 +1,7 @@
+import subprocess
 from .base import AgentWrapper
 
 class GeminiWrapper(AgentWrapper):
-    def execute(self, task):
-        print(f"[{self.name}] engaging for Deep Research...")
-        # Hypothetical usage: gemini research "task"
-        command = [self.command, "research", task]
-        print(f"[{self.name}] (Simulated) Running: {' '.join(command)}")
+    def delegate(self, task):
+        print(f"🤖 [AGENT] Delegating to Gemini for Deep Research...")
+        return self._run_subprocess([self.command, task])

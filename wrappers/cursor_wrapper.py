@@ -1,8 +1,7 @@
+import subprocess
 from .base import AgentWrapper
 
 class CursorWrapper(AgentWrapper):
-    def execute(self, task):
-        print(f"[{self.name}] opening context in IDE...")
-        # Hypothetical usage: cursor --open "task"
-        command = [self.command, "--open", task]
-        print(f"[{self.name}] (Simulated) Running: {' '.join(command)}")
+    def call(self, task):
+        print(f"🛠️  [UTILITY] Opening {task} in Cursor IDE...")
+        return self._run_subprocess([self.command, ".", task])

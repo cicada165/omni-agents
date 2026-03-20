@@ -15,21 +15,29 @@ class TestOrchestrator(unittest.TestCase):
     def setUp(self):
         self.config = {
             "agents": {
-                "claude": {"enabled": True},
-                "codex": {"enabled": True}
+                "claude-pro": {"enabled": True, "category": "agent"},
+                "claude-bedrock": {"enabled": True, "category": "agent"},
+                "codex": {"enabled": True, "category": "agent"},
+                "cursor": {"enabled": True, "category": "utility"}
             },
-            "settings": {"default_agent": "claude", "dry_run": True}
+            "settings": {"default_agent": "claude-pro", "dry_run": True}
         }
 
     def test_agent_wrapper_initialization(self):
         wrapper = AgentWrapper("test_agent", {})
         self.assertEqual(wrapper.name, "test_agent")
 
-    def test_claude_wrapper_dry_run(self):
-        wrapper = ClaudeWrapper("claude", {"dry_run": True})
+    def test_claude_wrapper_dry_run_pro(self):
+        wrapper = ClaudeWrapper("claude-pro", {"dry_run": True})
         with patch('sys.stdout', new=StringIO()) as fake_out:
             wrapper.execute("test task")
-            self.assertIn("[claude] Dry run:", fake_out.getvalue())
+            self.assertIn("[claude-pro] Dry run:", fake_out.getvalue())
+
+    def test_claude_wrapper_dry_run_bedrock(self):
+        wrapper = ClaudeWrapper("claude-bedrock", {"dry_run": True})
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            wrapper.execute("test task")
+            self.assertIn("[claude-bedrock] Dry run:", fake_out.getvalue())
 
     def test_unknown_agent_handling(self):
         # Verify that asking for an unknown agent (if we were to implement that check in a factory) 

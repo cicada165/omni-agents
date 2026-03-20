@@ -1,23 +1,33 @@
 agents:
-  claude:
+  claude-pro:
     command: "claude"
-    description: "Deep reasoning, multi-file architectural planning."
+    description: "Claude Pro Subscription (Official CLI)"
+    category: "agent"
+    enabled: true
+  claude-bedrock:
+    command: "/Users/qu4ntum/start_claude_tunnel.sh"
+    description: "AWS Bedrock / smclaude tunnel (Sonnet 4.5)"
+    category: "agent"
     enabled: true
   codex:
     command: "codex"
     description: "Autonomous terminal operator and DevOps execution."
+    category: "agent"
     enabled: true
   gemini:
     command: "gemini"
     description: "Massive context (1M+) research and rapid prototyping."
+    category: "agent"
     enabled: true
   cursor:
     command: "cursor"
     description: "The central IDE, diff viewer, and fine-grained editor."
+    category: "utility"
     enabled: true
   antigravity:
     command: "antigravity"
     description: "High-velocity, 'YOLO' agentic prototype mode."
+    category: "agent"
     enabled: true
 
 settings:

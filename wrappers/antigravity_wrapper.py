@@ -1,8 +1,7 @@
+import subprocess
 from .base import AgentWrapper
 
 class AntigravityWrapper(AgentWrapper):
-    def execute(self, task):
-        print(f"[{self.name}] engaging HIGH VELOCITY mode...")
-        # Hypothetical usage: antigravity --yolo "task"
-        command = [self.command, "--yolo", task]
-        print(f"[{self.name}] (Simulated) Running: {' '.join(command)}")
+    def delegate(self, task):
+        print(f"🚀 [AGENT] Delegating to Antigravity for HIGH VELOCITY execution...")
+        return self._run_subprocess([self.command, task])
