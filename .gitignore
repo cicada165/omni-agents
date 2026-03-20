@@ -118,3 +118,5 @@ dmypy.json
 *.swp
 *.swo
 .DS_Store
+.env.local
+node_modules
