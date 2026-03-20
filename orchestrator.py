@@ -1,7 +1,11 @@
-import argparse
+import os
 import yaml
 import sys
-import os
+from dotenv import load_dotenv
+import argparse
+
+# Load environment variables from .env file
+load_dotenv()
 from wrappers.base import AgentWrapper
 from wrappers.claude_wrapper import ClaudeWrapper
 from wrappers.codex_wrapper import CodexWrapper

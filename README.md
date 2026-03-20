@@ -30,6 +30,15 @@ The Agent Orchestrator allows you to:
    python check_setup.py
    ```
 
+3. **Configure API Keys**:
+   - For **Codex**, you need an OpenAI API Key.
+   - Create a `.env` file from the example:
+     ```bash
+     cp .env.example .env
+     ```
+   - Obtain your key from [platform.openai.com/api-keys](https://platform.openai.com/api-keys).
+   - Paste the key into your `.env` file.
+
 3. **Configuration**:
    Copy `config.yaml` and update paths/arguments if your tools are in non-standard locations.
 
